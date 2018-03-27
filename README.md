@@ -1,6 +1,12 @@
-
 # repub
 
-In root directory type node server.js
+### Prerequisites
+What things you need to run app
+* node
+* yarn
 
-After that, open another terminal, type cd client and type npm start. 
+### Running
+
+```sh
+./run.sh
+```

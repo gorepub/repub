@@ -1,40 +1,20 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import logo from './logo.svg';
+// Pages
+import HomePage from './components/pages/HomePage';
+import DashboardPage from './components/pages/DashboardPage';
 
-import './App.css';
+// Routes Wrapper
+import AuthRouteWrapper from './routes/AuthRouteWrapper';
 
-class App extends Component {
-  state = {
-    response: ''
-  };
-
-  componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
-  }
-
-  callApi = async () => {
-    const response = await fetch('/api');
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">{this.state.response}</p>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <Fragment>
+    <Switch>
+      <Route path='/' exact component={HomePage} />
+      <AuthRouteWrapper path='/dashboard' component={DashboardPage} />
+    </Switch>
+  </Fragment>
+);
 
 export default App;
